@@ -1,0 +1,10 @@
+# Ignora a pasta de configurações do VSCode
+.vscode/
+
+# Ignora arquivos executáveis comuns em sistemas Unix e Windows
+*.exe
+*.out
+*.bin
+
+# Ignora arquivos de texto
+*.txt
