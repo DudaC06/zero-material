@@ -105,6 +105,11 @@ int main(){
     sort(pares.begin(), pares.end(), [](pair<int, int> a, pair<int, int> b) {
         return a.second < b.second; // ordena por p.second
     });
+    std::sort(início, fim, [](const Tipo& a, const Tipo& b) {
+    // Defina a lógica de comparação aqui
+    return a < b;  // Exemplo simples de comparação
+    });
+
 
 
     cout << pares[0].first << "\n";   // imprime o primeiro valor do primeiro par

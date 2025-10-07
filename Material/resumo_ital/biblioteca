@@ -1,0 +1,184 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// --- POTÊNCIA ---
+// Potência inteira
+int pot1 = pow(2, 3);         // 2^3 = 8
+long long pot2 = pow(2LL, 10); // 2^10 = 1024 (use LL para evitar overflow)
+
+// Potência modular (evita overflow) - importante em problemas com mod 1e9+7
+long long mod_pow(long long base, long long expo, long long mod) {
+    long long res = 1;
+    base %= mod;
+    while (expo > 0) {
+        if (expo % 2) res = (res * base) % mod;
+        base = (base * base) % mod;
+        expo /= 2;
+    }
+    return res;
+}
+
+// --- LOGARITMOS --- 
+double log10x = log10(1000);        // log base 10: 3
+double logex = log(2.71828);        // log natural (base e): ≈1
+double val = 8.0;
+double log_base2 = log2(val);       // log base 2 usando função pronta: 3
+double log_base2_alt = log(val) / log(2); // alternativa manual
+
+// --- ARREDONDAMENTO ---
+double n = 3.75;
+int cima = ceil(n);      // 4
+int baixo = floor(n);    // 3
+int arred = round(n);    // 4
+int cortado = trunc(n);  // 3 (sem arredondar)
+
+// --- VALOR ABSOLUTO ---
+int absInt = abs(-10);        // 10
+double absDouble = fabs(-5.5); // 5.5
+
+// --- MÁXIMO / MÍNIMO ---
+int maximo = max(5, 9); // 9
+int minimo = min(5, 9); // 5
+
+// --- TROCAR VARIÁVEIS ---
+int a = 10, b = 20;
+swap(a, b); // a = 20, b = 10
+
+// --- GCD e LCM (desde C++17) ---
+int mdc = gcd(24, 36); // 12
+int mmc = lcm(4, 6);   // 12
+
+// --- RAIZ ---
+double raiz = sqrt(16);  // 4
+double raiz3 = cbrt(27); // raiz cúbica: 3
+
+// --- FUNÇÕES TRIGONOMÉTRICAS ---
+double seno = sin(M_PI / 2);   // 1.0
+double cosseno = cos(0);       // 1.0
+double tangente = tan(M_PI/4); // 1.0
+double arco_seno = asin(1.0);  // π/2
+double h = hypot(3, 4);        // hipotenusa √(3² + 4²) = 5
+
+// --- EXPONENCIAÇÃO NATURAL ---
+double ex = exp(1); // e^1 ≈ 2.718
+
+// --- SINAL ---
+int sinal = (n > 0) - (n < 0); // 1 (positivo), -1 (negativo), 0 (zero)
+
+// --- RESTO REAL ---
+double resto = fmod(5.5, 2.0); // 1.5
+
+// --- COMPARAÇÃO DE DOUBLE COM TOLERÂNCIA ---
+bool iguais = fabs(1.00000001 - 1.00000002) < 1e-9;
+
+// ==========================
+// === VETORES (vector) ====
+// ==========================
+
+vector<int> v = {5, 3, 1, 4, 2};
+sort(v.begin(), v.end());            // crescente
+sort(v.rbegin(), v.rend());          // decrescente
+reverse(v.begin(), v.end());         // inverte
+int menor = *min_element(v.begin(), v.end());
+int maior = *max_element(v.begin(), v.end());
+bool achou = binary_search(v.begin(), v.end(), 3); // true se existir
+auto pos = find(v.begin(), v.end(), 4);            // retorna iterator
+int qtd = count(v.begin(), v.end(), 5);            // quantos "5"
+int soma = accumulate(v.begin(), v.end(), 0);      // soma total
+
+// --- Função lambda para sort personalizado ---
+sort(v.begin(), v.end(), [](int a, int b) {
+    return a > b; // decrescente
+});
+
+// ====================
+// === CONJUNTOS ====
+// ====================
+
+set<int> s = {3, 1, 4, 1, 5}; // valores únicos, ordenados
+s.insert(2);
+s.erase(3);
+bool existe = s.count(2); // 1 se existe
+
+// =================
+// === MAPAS =======
+// =================
+
+map<string, int> freq;
+freq["ana"]++;      // conta frequência
+freq["joao"] += 2;  // incrementa
+
+// =================
+// === FILAS =======
+// =================
+
+queue<int> fila;
+fila.push(10);
+int frente = fila.front();
+fila.pop();
+
+// =================
+// === PILHAS ======
+// =================
+
+stack<int> pilha;
+pilha.push(1);
+int topo = pilha.top();
+pilha.pop();
+
+// ==========================
+// === FILA DE PRIORIDADE ===
+// ==========================
+
+// Max Heap (padrão)
+priority_queue<int> pq;
+pq.push(5); pq.push(10);
+int maiorTop = pq.top(); // 10
+
+// Min Heap
+priority_queue<int, vector<int>, greater<int>> minHeap;
+minHeap.push(5); minHeap.push(1);
+int menorTop = minHeap.top(); // 1
+
+// ==========================
+// === STRINGS =============
+// ==========================
+
+string str = "Maratona";
+
+int tamanho = str.size();     // 8
+char ch = str[1];             // 'a'
+string sub = str.substr(0, 4); // "Mara"
+int posicao = str.find("ton"); // 5 (ou string::npos se não achar)
+bool ordem = "abc" < "abd";    // true (lexicográfica)
+
+transform(str.begin(), str.end(), str.begin(), ::toupper); // "MARATONA"
+transform(str.begin(), str.end(), str.begin(), ::tolower); // "maratona"
+
+str.erase(str.find_last_not_of(" \n\r\t") + 1); // remove espaços do fim
+reverse(str.begin(), str.end());                // inverte
+sort(str.begin(), str.end());                   // ordena caracteres
+int conta_a = count(str.begin(), str.end(), 'a');
+replace(str.begin(), str.end(), 'a', 'x');      // troca 'a' por 'x'
+
+// Conversões string <-> número
+int num = stoi("123");
+long long big = stoll("123456789123");
+double real = stod("3.1415");
+string s1 = to_string(42);
+string s2 = to_string(3.14);
+
+// Split por delimitador (ex: vírgula)
+vector<string> split(string str, char delim) {
+    vector<string> res;
+    stringstream ss(str);
+    string token;
+    while (getline(ss, token, delim)) {
+        res.push_back(token);
+    }
+    return res;
+}
+
+// ==========================
+// FIM DA BIBLIOTECA BASE
+// ==========================
