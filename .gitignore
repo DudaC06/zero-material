@@ -8,3 +8,5 @@
 
 # Ignora arquivos de texto
 *.txt
+
+*.cph/
